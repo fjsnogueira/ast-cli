@@ -73,17 +73,15 @@ The tool is universal that can manage all the CxAST scan types (CxSAST, CxSCA, K
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Installing the CLI tool is very simple.
-
 ### Prerequisites
 
-To be able to build the code you should have:
+To be able to build the code you will need:
 * Go
- ```
-  You can download and install Go using this link: https://golang.org/doc/install
-```
+
 
 ### Setting Up
+To be able to build and use our tool, please perform the following steps:
+
 ### Windows
 ``` powershell
 setx GOOS=windows 
