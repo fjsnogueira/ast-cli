@@ -27,7 +27,7 @@ jobs:
           cx_tenant: ${{ secrets.CX_TENANT }}
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
-          additional_params: --scan-types sast,kics,sca
+          additional_params: --scan-types sast,kics,sca --report-format sarif --output-name results 
  #         additional_params: --sca-resolver ./ScaResolver --file-filter !readme --report-format sarif --output-name results --scan-types sast,kics,sca
       
       - name: Upload SARIF file
