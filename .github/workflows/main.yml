@@ -9,29 +9,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      GOROOT: /home/runner/go
-      GOBIN: $HOME/go/bin
-      GOPATH: /home/runner/work/ast-cli/ast-cli
 
     steps:
       - uses: actions/checkout@v2
       
-
-#      - name: Set up Go 1.17.x
-#        uses: actions/setup-go@v2
-#        with:
-#          go-version: 1.17.x
-# 
-      - name: setup go 1.7.6
-        run: |
-          wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
-          tar -C /home/runner -xzf go1.17.6.linux-amd64.tar.gz
-          export GOROOT="/home/runner/go"
-          export GOBIN="$HOME/go/bin"
-          mkdir -p $GOBIN
-          export PATH=$PATH:$GOROOT/bin:$GOBIN
-        shell: bash
+      - name: Set up Go 1.17.6
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17.6
+      - run: go mod
+ 
+#      - name: setup go 1.7.6
+#        run: |
+#          wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
+#          tar -C /home/runner -xzf go1.17.6.linux-amd64.tar.gz
+#          export GOROOT="/home/runner/go"
+#          export GOBIN="$HOME/go/bin"
+#          mkdir -p $GOBIN
+#          export PATH=$PATH:$GOROOT/bin:$GOBIN
+#        shell: bash
         
       - run: go get -u -v ./... 
         env:
