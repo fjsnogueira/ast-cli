@@ -42,6 +42,9 @@ jobs:
           wget https://sca-downloads.s3.amazonaws.com/cli/latest/ScaResolver-linux64.tar.gz
           tar -xzvf ScaResolver-linux64.tar.gz
           rm -rf ScaResolver-linux64.tar.gz
+          
+      - name: Run SCA Resolver in offline mode
+        run: ./ScaResolver offline -s /github/workspace/ ast-cli -r .cxsca-results.json
       
       - name: Checkmarx AST CLI Action
         uses: checkmarxDev/ast-github-action@master
@@ -51,9 +54,9 @@ jobs:
           cx_tenant: ${{ secrets.CX_TENANT }}
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
-#         additional_params: --scan-types sast,kics,sca --report-format sarif --output-name results 
+          additional_params: --scan-types sast,kics,sca --report-format sarif --output-name results 
 #         additional_params: --sca-resolver ./ScaResolver --file-filter !readme --report-format sarif --output-name results --scan-types sast,kics,sca
-          additional_params: --sca-resolver ./ScaResolver --debug --report-format sarif --output-name results --scan-types sast,kics,sca
+#         additional_params: --sca-resolver ./ScaResolver --debug --report-format sarif --output-name results --scan-types sast,kics,sca
        
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
