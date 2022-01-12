@@ -9,9 +9,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GOROOT: /home/runner/go
+      GOBIN: $HOME/go/bin
+      PATH: $PATH:$GOROOT/bin:$GOBIN
 
     steps:
       - uses: actions/checkout@v2
+      
 
 #      - name: Set up Go 1.17.x
 #        uses: actions/setup-go@v2
