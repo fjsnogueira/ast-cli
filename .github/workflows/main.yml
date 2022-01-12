@@ -12,7 +12,6 @@ jobs:
     env:
       GOROOT: /home/runner/go
       GOBIN: $HOME/go/bin
-      PATH: $PATH:$GOROOT/bin:$GOBIN
 
     steps:
       - uses: actions/checkout@v2
@@ -34,8 +33,14 @@ jobs:
         shell: bash
         
       - run: go get -u -v ./... 
+        env:
+          GOROOT: /home/runner/go
+          GOBIN: $HOME/go/bin
       
       - run: go build -o ./bin/cx ./cmd
+        env:
+          GOROOT: /home/runner/go
+          GOBIN: $HOME/go/bin
           
       - name: Download SCA Resolver
         run: |
