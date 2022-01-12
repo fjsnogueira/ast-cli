@@ -28,9 +28,14 @@ jobs:
 #          export PATH=$PATH:$GOROOT/bin:$GOBIN
 #        shell: bash
         
-      - run: go get -u -v ./... 
+      - name: Download dependencies
+        run: go get -u -v ./... 
       
-      - run: go build -o ./bin/cx ./cmd
+      - name: Build project
+        run: go build -o ./bin/cx ./cmd
+      
+      - name: Test go mod is installed by running go mo verify
+        run: go mod verify
       
       - name: Download SCA Resolver
         run: |
