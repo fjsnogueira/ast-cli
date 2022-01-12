@@ -29,15 +29,9 @@ jobs:
 #        shell: bash
         
       - run: go get -u -v ./... 
-        env:
-          GOROOT: /home/runner/go
-          GOBIN: $HOME/go/bin
       
       - run: go build -o ./bin/cx ./cmd
-        env:
-          GOROOT: /home/runner/go
-          GOBIN: $HOME/go/bin
-          
+      
       - name: Download SCA Resolver
         run: |
           wget https://sca-downloads.s3.amazonaws.com/cli/latest/ScaResolver-linux64.tar.gz
@@ -54,10 +48,10 @@ jobs:
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
 #          additional_params: --scan-types sast,kics,sca --report-format sarif --output-name results 
 #         additional_params: --sca-resolver ./ScaResolver --file-filter !readme --report-format sarif --output-name results --scan-types sast,kics,sca
-          additional_params: --sca-resolver ./ScaResolver --debug
+          additional_params: --sca-resolver ./ScaResolver --debug --report-format sarif --output-name results 
        
-#      - name: Upload SARIF file
-#        uses: github/codeql-action/upload-sarif@v1
-#        with:
-#          # Path to SARIF file relative to the root of the repository
-#          sarif_file: results.sarif
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: results.sarif
