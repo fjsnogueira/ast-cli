@@ -13,11 +13,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Go 1.17.x
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.17.x
-      
+#      - name: Set up Go 1.17.x
+#        uses: actions/setup-go@v2
+#        with:
+#          go-version: 1.17.x
+# 
+      - name: setup go 1.7.6
+        run: |
+          wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
+          tar -C /usr/local -xzf go1.17.6.linux-amd64.tar.gz
+          export GOROOT="/usr/local/go"
+          export GOBIN="$HOME/go/bin"
+          mkdir -p $GOBIN
+          export PATH=$PATH:$GOROOT/bin:$GOBIN
+        shell: bash
+        
       - run: go get -u -v ./... 
       
       - run: go build -o ./bin/cx ./cmd
