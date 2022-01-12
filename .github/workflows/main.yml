@@ -21,8 +21,8 @@ jobs:
       - name: setup go 1.7.6
         run: |
           wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
-          tar -C /usr/local -xzf go1.17.6.linux-amd64.tar.gz
-          export GOROOT="/usr/local/go"
+          tar -C /home/runner -xzf go1.17.6.linux-amd64.tar.gz
+          export GOROOT="/home/runner/go"
           export GOBIN="$HOME/go/bin"
           mkdir -p $GOBIN
           export PATH=$PATH:$GOROOT/bin:$GOBIN
