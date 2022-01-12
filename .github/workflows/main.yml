@@ -12,6 +12,7 @@ jobs:
     env:
       GOROOT: /home/runner/go
       GOBIN: $HOME/go/bin
+      GOPATH: /home/runner/work/ast-cli/ast-cli
 
     steps:
       - uses: actions/checkout@v2
