@@ -44,7 +44,7 @@ jobs:
           rm -rf ScaResolver-linux64.tar.gz
           
       - name: Run SCA Resolver in offline mode
-        run: ./ScaResolver offline -s ./ ast-cli -r .cxsca-results.json
+        run: ./ScaResolver offline -s ./ ast-cli -r .cxsca-results.json --scan-containers
       
       - name: Checkmarx AST CLI Action
         uses: checkmarxDev/ast-github-action@master
